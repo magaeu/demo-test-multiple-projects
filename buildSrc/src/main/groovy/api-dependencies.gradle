@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'eclipse'
+}
+
+group 'demo.test.multiple.projects'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'io.rest-assured', name: 'json-schema-validator', version: project['rest.assured.version']
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: project['rest.assured.version']
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: project['assertj.version']
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: project['junit.jupiter.version']
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: project['junit.jupiter.version']
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: project['junit.jupiter.version']
+}
+
+test {
+    String itags = System.getProperty("includeTags") ?
+            System.getProperty("includeTags") : 'smoke';
+    String etags = System.getProperty("excludeTags") ?
+            System.getProperty("excludeTags") : 'end-to-end';
+
+    systemProperty 'file.encoding', 'utf-8'
+
+    useJUnitPlatform {
+        includeTags  itags
+        excludeTags  etags
+    }
+}
