@@ -21,4 +21,23 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-replay_pid*
+
+# generated files
+bin/
+gen/
+
+# Eclipse project files
+.classpath
+.project
+.settings
+
+# Gradle
+.gradle/
+build/
+
+# Idea
+.idea/
+out/
+*.iml
+*.ipr
+*.iws
