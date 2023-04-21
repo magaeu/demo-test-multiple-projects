@@ -1,0 +1,14 @@
+
+plugins {
+    id 'api-dependencies'
+}
+
+group 'com.restful.booker'
+
+sourceSets {
+    test {
+        java {
+            srcDir 'java/com/booker/api'
+        }
+    }
+}
