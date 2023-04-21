@@ -1,4 +1,4 @@
-package com.booker.api.setup;
+package setup;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -9,7 +9,10 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseTest {
     protected static RequestSpecification request;
@@ -22,7 +25,7 @@ public abstract class BaseTest {
     }
 
     private static String getBaseUrl() {
-        return "https://restful-booker.herokuapp.com/";
+        return "https://restful-booker.herokuapp.com";
     }
 
     @BeforeEach

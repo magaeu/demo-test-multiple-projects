@@ -1,13 +1,15 @@
 package tests;
 
-import com.booker.api.dto.BookingIdDTO;
-import com.booker.api.setup.BaseTest;
+import dto.BookingIdDTO;
+import setup.BaseTest;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -21,16 +23,18 @@ public class RetrieveBookingsTest extends BaseTest {
     @Tag("smoke")
     @DisplayName("[BOOKER-01.01] Retrieve bookings")
     public void retrieveBookings() {
-        BookingIdDTO[] bookings = given()
+        List<BookingIdDTO> bookings = given()
                 .spec(request)
                 .when()
-                .get()
+                .get("/booking")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .contentType(ContentType.JSON)
-                .extract().as(BookingIdDTO[].class);
+                .extract()
+                .body()
+                .as(List.class);
 
-        int length = bookings.getLength();
+        int length = bookings.size();
         softly.assertThat(length).as(LENGTH_MSG, 1, length).isGreaterThan(1);
     }
 }
