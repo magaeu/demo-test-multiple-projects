@@ -1,4 +1,4 @@
-package com.booker.api.dto;
+package dto;
 
 public class BookingIdDTO {
     private int bookingid;
