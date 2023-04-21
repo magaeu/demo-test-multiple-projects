@@ -1,0 +1,14 @@
+
+plugins {
+    id 'api-dependencies'
+}
+
+group 'com.cat-quote'
+
+sourceSets {
+    test {
+        java {
+            srcDir 'java/com/api'
+        }
+    }
+}
